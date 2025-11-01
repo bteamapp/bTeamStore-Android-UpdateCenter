@@ -1,6 +1,3 @@
 {
-  "hasUpdate": true,
-  "updateInfoUrl": "https://example.com/path/to/update-info-v2.html",
-  "title": "✨ Có bản cập nhật mới!",
-  "message": "Một phiên bản mới với nhiều cải tiến đã sẵn sàng để bạn khám phá. Xem chi tiết bên dưới nhé!"
+  "hasUpdate": false
 }
