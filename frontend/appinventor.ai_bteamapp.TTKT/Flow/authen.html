@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tiêu đề sẽ được thay đổi bằng JavaScript -->
-    <title>Đang xử lý...</title>
+    <title>Đang gửi dữ liệu...</title>
     <style>
-        /* CSS loading để người dùng thấy có quá trình đang diễn ra */
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #0d1117; color: #c9d1d9; margin: 0; }
         .container { text-align: center; }
         .spinner { border: 4px solid rgba(255, 255, 255, 0.1); width: 30px; height: 30px; border-radius: 50%; border-left-color: #58a6ff; animation: spin 1s ease infinite; margin: 0 auto 15px; }
@@ -23,54 +21,59 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const statusMessage = document.getElementById('status-message');
-            try {
-                // 1. Đọc các tham số từ URL
-                const urlParams = new URLSearchParams(window.location.search);
-                const username = urlParams.get('username');
-                const sessionToken = urlParams.get('sessionToken');
-                const premium = urlParams.get('premium');
+            
+            // 1. Đọc các tham số từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+            const sessionToken = urlParams.get('sessionToken');
+            const premium = urlParams.get('premium');
 
+            try {
                 if (username && sessionToken) {
                     // 2. Tạo object dữ liệu
                     const authData = {
                         status: 'success',
                         username: username,
                         sessionToken: sessionToken,
-                        premium: premium || 'none' // Nếu không có premium thì mặc định là 'none'
+                        premium: premium || 'free'
                     };
-
-                    // 3. Chuyển object thành chuỗi JSON
                     const jsonString = JSON.stringify(authData);
 
-                    // 4. Set chuỗi JSON vào document.title
-                    // Đây là "kênh giao tiếp" mà WebViewString sẽ đọc được
-                    document.title = jsonString;
+                    // 3. GỌI HÀM CỦA APP INVENTOR ĐỂ TRUYỀN DỮ LIỆU
+                    if (window.AppInventor && typeof window.AppInventor.setWebViewString === 'function') {
+                        // Thử gọi ngay lập tức
+                        window.AppInventor.setWebViewString(jsonString);
+                        statusMessage.textContent = 'Xác thực thành công. Đang đóng WebView...';
+                        
+                        // Sau khi gọi hàm, tự đóng cửa sổ
+                        setTimeout(() => {
+                             // Rất quan trọng: gọi App Inventor để đóng webview nếu có hàm đó
+                            if (window.AppInventor && typeof window.AppInventor.closeWebView === 'function') {
+                                window.AppInventor.closeWebView();
+                            } else {
+                                // Fallback cho trường hợp App Inventor chỉ cần nhận string để xử lý và tự đóng
+                                window.close(); 
+                            }
+                        }, 50);
 
-                    // (Tùy chọn) Cập nhật thông báo trên màn hình
-                    statusMessage.textContent = 'Xác thực thành công. Hoàn tất...';
+                    } else {
+                        // Trường hợp này xảy ra nếu hàm AppInventor.setWebViewString không tồn tại
+                        statusMessage.textContent = 'Xác thực thành công, nhưng không thể giao tiếp với ứng dụng. Vui lòng mở lại ứng dụng.';
+                        console.error("AppInventor bridge function not found.");
+                        // Hiển thị chuỗi JSON trong title làm phương án dự phòng (dù App Inventor khó đọc)
+                        document.title = jsonString; 
+                    }
 
                 } else {
-                    const errorData = {
-                        status: 'error',
-                        message: 'Thiếu thông tin đăng nhập từ middleware.'
-                    };
+                    const errorData = { status: 'error', message: 'Thiếu thông tin đăng nhập.' };
                     document.title = JSON.stringify(errorData);
                     statusMessage.textContent = 'Lỗi: Dữ liệu không hợp lệ.';
                 }
             } catch (e) {
-                const errorData = {
-                    status: 'error',
-                    message: 'Đã xảy ra lỗi phía client: ' + e.message
-                };
-                document.title = JSON.stringify(errorData);
-                statusMessage.textContent = 'Đã xảy ra lỗi nghiêm trọng.';
                 console.error("Lỗi trên trang bridge:", e);
+                statusMessage.textContent = 'Đã xảy ra lỗi nghiêm trọng.';
             }
         });
     </script>
-
-    <!-- TUTORIAL
-v1.0
-    -->
 </body>
 </html>
