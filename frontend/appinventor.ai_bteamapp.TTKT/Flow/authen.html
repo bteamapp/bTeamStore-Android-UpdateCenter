@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tiêu đề sẽ được thay đổi bằng JavaScript -->
+    <title>Đang xử lý...</title>
+    <style>
+        /* CSS loading để người dùng thấy có quá trình đang diễn ra */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #0d1117; color: #c9d1d9; margin: 0; }
+        .container { text-align: center; }
+        .spinner { border: 4px solid rgba(255, 255, 255, 0.1); width: 30px; height: 30px; border-radius: 50%; border-left-color: #58a6ff; animation: spin 1s ease infinite; margin: 0 auto 15px; }
+        p { font-size: 1em; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="spinner"></div>
+        <p id="status-message">Đang chuyển thông tin về ứng dụng...</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const statusMessage = document.getElementById('status-message');
+            try {
+                // 1. Đọc các tham số từ URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const username = urlParams.get('username');
+                const sessionToken = urlParams.get('sessionToken');
+                const premium = urlParams.get('premium');
+
+                if (username && sessionToken) {
+                    // 2. Tạo object dữ liệu
+                    const authData = {
+                        status: 'success',
+                        username: username,
+                        sessionToken: sessionToken,
+                        premium: premium || 'none' // Nếu không có premium thì mặc định là 'none'
+                    };
+
+                    // 3. Chuyển object thành chuỗi JSON
+                    const jsonString = JSON.stringify(authData);
+
+                    // 4. Set chuỗi JSON vào document.title
+                    // Đây là "kênh giao tiếp" mà WebViewString sẽ đọc được
+                    document.title = jsonString;
+
+                    // (Tùy chọn) Cập nhật thông báo trên màn hình
+                    statusMessage.textContent = 'Xác thực thành công. Hoàn tất...';
+
+                } else {
+                    const errorData = {
+                        status: 'error',
+                        message: 'Thiếu thông tin đăng nhập từ middleware.'
+                    };
+                    document.title = JSON.stringify(errorData);
+                    statusMessage.textContent = 'Lỗi: Dữ liệu không hợp lệ.';
+                }
+            } catch (e) {
+                const errorData = {
+                    status: 'error',
+                    message: 'Đã xảy ra lỗi phía client: ' + e.message
+                };
+                document.title = JSON.stringify(errorData);
+                statusMessage.textContent = 'Đã xảy ra lỗi nghiêm trọng.';
+                console.error("Lỗi trên trang bridge:", e);
+            }
+        });
+    </script>
+
+    <!-- TUTORIAL
+v1.0
+    -->
+</body>
+</html>
