@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đang gửi dữ liệu...</title>
+    <meta http-equiv="refresh" content="3; url=https://localhost/index.html">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #0d1117; color: #c9d1d9; margin: 0; }
         .container { text-align: center; }
@@ -43,7 +44,7 @@
                     if (window.AppInventor && typeof window.AppInventor.setWebViewString === 'function') {
                         // Thử gọi ngay lập tức
                         window.AppInventor.setWebViewString(jsonString);
-                        statusMessage.textContent = 'Xác thực thành công. Đang đóng WebView...';
+                        statusMessage.textContent = 'Xác thực thành công. Đang tải thông tin về gói đăng ký...';
                         
                         // Sau khi gọi hàm, tự đóng cửa sổ
                         setTimeout(() => {
