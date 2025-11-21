@@ -5,7 +5,7 @@
       "name": "Tết Nguyên Đán",
       "recurring": true,
       "startDate": "01-28",
-      "endDate": "10-10",
+      "endDate": "01-10",
       "assets": {
         "logoUrl": "https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg",
         "backgroundUrl": "https://www.w3schools.com//w3images/forestbridge.jpg"
@@ -20,16 +20,6 @@
       "assets": {
         "logoUrl": "https://i.imgur.com/URL_LOGO_NOEL.png",
         "backgroundUrl": "https://i.imgur.com/URL_NEN_NOEL.jpg"
-      }
-    },
-    {
-      "id": "su-kien-dac-biet-2025",
-      "name": "Sự kiện đặc biệt chỉ trong năm 2025",
-      "startDate": "2025-08-15",
-      "endDate": "2025-08-20",
-      "assets": {
-        "logoUrl": "URL_LOGO_DAC_BIET.png",
-        "backgroundUrl": "URL_NEN_DAC_BIET.jpg"
       }
     },
     {
