@@ -1,13 +1,13 @@
 {
   "events": [
     {
-      "id": "tet2025",
-      "name": "Tết Nguyên Đán 2025",
+      "id": "test2025",
+      "name": "Test",
       "startDate": "2025-01-28",
       "endDate": "2026-02-10",
       "assets": {
-        "logoUrl": "https://i.imgur.com/URL_LOGO_TET.png",
-        "backgroundUrl": "https://i.imgur.com/URL_NEN_TET.jpg"
+        "logoUrl": "https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg",
+        "backgroundUrl": "https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg"
       }
     },
     {
