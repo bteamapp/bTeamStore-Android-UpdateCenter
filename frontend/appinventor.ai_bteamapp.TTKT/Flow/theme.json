@@ -5,10 +5,10 @@
       "name": "Tết Nguyên Đán",
       "recurring": true,
       "startDate": "01-28",
-      "endDate": "02-10",
+      "endDate": "12-10",
       "assets": {
-        "logoUrl": "https://i.imgur.com/URL_LOGO_TET.png",
-        "backgroundUrl": "https://i.imgur.com/URL_NEN_TET.jpg"
+        "logoUrl": "https://www.w3.org/People/mimasa/test/imgformat/img/w3c_home.jpg",
+        "backgroundUrl": "https://www.w3schools.com//w3images/forestbridge.jpg"
       }
     },
     {
