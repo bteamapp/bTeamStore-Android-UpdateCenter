@@ -1,0 +1,32 @@
+{
+  "events": [
+    {
+      "id": "tet2025",
+      "name": "Tết Nguyên Đán 2025",
+      "startDate": "2025-01-28",
+      "endDate": "2025-02-10",
+      "assets": {
+        "logoUrl": "https://i.imgur.com/URL_LOGO_TET.png",
+        "backgroundUrl": "https://i.imgur.com/URL_NEN_TET.jpg"
+      }
+    },
+    {
+      "id": "noel2024",
+      "name": "Giáng Sinh 2024",
+      "startDate": "2024-12-20",
+      "endDate": "2024-12-26",
+      "assets": {
+        "logoUrl": "https://i.imgur.com/URL_LOGO_NOEL.png",
+        "backgroundUrl": "https://i.imgur.com/URL_NEN_NOEL.jpg"
+      }
+    },
+    {
+      "id": "default",
+      "name": "Giao diện mặc định",
+      "assets": {
+        "logoUrl": "https://blogger.googleusercontent.com/img/a/AVvXsEgklzG7CoF5gS2uKHKY8-kbBIVn0FUBkFyt4CLyG1OKk_sXOGR1IpW9xtNIGY8PqX3fykdDA-9NEx2-PSa-2oM05gJN8r8nmKr8opuTO6SPN2A5gGmyeFBBYFKz-DAGnwHTA6VM3TSSKzGnZGepQspLzMYfXy0-MURL8xUfCe2bCTgZaWzrWjybAli1S1c=s150",
+        "backgroundUrl": ""
+      }
+    }
+  ]
+}
